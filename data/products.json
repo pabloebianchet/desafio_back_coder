@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "title": "Laptop",
+    "description": "Una laptop potente con 16GB de RAM y 512GB SSD",
+    "code": "LP1234",
+    "price": 1200.99,
+    "status": true,
+    "stock": 10,
+    "category": "Electronics",
+    "thumbnails": ["images/laptop1.jpg", "images/laptop2.jpg"]
+  },
+  {
+    "id": 2,
+    "title": "Smartphone",
+    "description": "Un smartphone de alta gama con cámara de 48MP",
+    "code": "SP5678",
+    "price": 799.49,
+    "status": true,
+    "stock": 25,
+    "category": "Electronics",
+    "thumbnails": ["images/smartphone1.jpg", "images/smartphone2.jpg"]
+  },
+  {
+    "id": 3,
+    "title": "Headphones",
+    "description": "Auriculares con cancelación de ruido",
+    "code": "HP9101",
+    "price": 199.99,
+    "status": true,
+    "stock": 15,
+    "category": "Accessories",
+    "thumbnails": ["images/headphones1.jpg", "images/headphones2.jpg"]
+  },
+  {
+    "id": 4,
+    "title": "Monitor",
+    "description": "Monitor 4K de 27 pulgadas",
+    "code": "MN1122",
+    "price": 399.0,
+    "status": true,
+    "stock": 7,
+    "category": "Electronics",
+    "thumbnails": ["images/monitor1.jpg", "images/monitor2.jpg"]
+  },
+  {
+    "id": 5,
+    "title": "Keyboard",
+    "description": "Teclado mecánico RGB",
+    "code": "KB3344",
+    "price": 99.99,
+    "status": true,
+    "stock": 50,
+    "category": "Accessories",
+    "thumbnails": ["images/keyboard1.jpg", "images/keyboard2.jpg"]
+  }
+]
