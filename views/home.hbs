@@ -1,0 +1,25 @@
+{{!-- views/home.hbs --}}
+{{> main}} <!-- Incluye el layout principal -->
+<h1>{{title}}</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Código</th>
+      <th>Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    <tr>
+      <td>{{this.id}}</td>
+      <td>{{this.title}}</td>
+      <td>{{this.code}}</td>
+      <td>{{this.price}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+

@@ -1,57 +1,119 @@
 [
   {
     "id": 1,
-    "title": "Laptop",
-    "description": "Una laptop potente con 16GB de RAM y 512GB SSD",
-    "code": "LP1234",
-    "price": 1200.99,
+    "title": "Nike Air Max 90",
+    "description": "Zapatillas clásicas de Nike con una excelente amortiguación y estilo atemporal.",
+    "code": "NM9090",
+    "price": 120,
     "status": true,
-    "stock": 10,
-    "category": "Electronics",
-    "thumbnails": ["images/laptop1.jpg", "images/laptop2.jpg"]
+    "stock": 30,
+    "category": "Footwear",
+    "thumbnails": [
+      "images/nike_air_max_90_1.jpg"
+    ]
   },
   {
     "id": 2,
-    "title": "Smartphone",
-    "description": "Un smartphone de alta gama con cámara de 48MP",
-    "code": "SP5678",
-    "price": 799.49,
+    "title": "Nike Air Force 1",
+    "description": "Zapatillas icónicas de Nike con un diseño versátil y elegante.",
+    "code": "NF0101",
+    "price": 100,
     "status": true,
-    "stock": 25,
-    "category": "Electronics",
-    "thumbnails": ["images/smartphone1.jpg", "images/smartphone2.jpg"]
+    "stock": 20,
+    "category": "Footwear",
+    "thumbnails": [
+      "images/nike_air_force_1_1.jpg"
+    ]
   },
   {
     "id": 3,
-    "title": "Headphones",
-    "description": "Auriculares con cancelación de ruido",
-    "code": "HP9101",
-    "price": 199.99,
+    "title": "Nike React Infinity Run",
+    "description": "Zapatillas de running con tecnología React para una pisada suave y reactiva.",
+    "code": "NRR101",
+    "price": 160,
     "status": true,
-    "stock": 15,
-    "category": "Accessories",
-    "thumbnails": ["images/headphones1.jpg", "images/headphones2.jpg"]
+    "stock": 25,
+    "category": "Footwear",
+    "thumbnails": [
+      "images/nike_react_infinity_run_1.jpg"
+    ]
   },
   {
     "id": 4,
-    "title": "Monitor",
-    "description": "Monitor 4K de 27 pulgadas",
-    "code": "MN1122",
-    "price": 399.0,
+    "title": "Nike ZoomX Vaporfly",
+    "description": "Zapatillas de competición ultra ligeras con espuma ZoomX para un retorno de energía inigualable.",
+    "code": "NZV202",
+    "price": 250,
     "status": true,
-    "stock": 7,
-    "category": "Electronics",
-    "thumbnails": ["images/monitor1.jpg", "images/monitor2.jpg"]
+    "stock": 15,
+    "category": "Footwear",
+    "thumbnails": [
+      "images/nike_zoomx_vaporfly_1.jpg"
+    ]
   },
   {
     "id": 5,
-    "title": "Keyboard",
-    "description": "Teclado mecánico RGB",
-    "code": "KB3344",
-    "price": 99.99,
+    "title": "Nike Blazer Mid '77",
+    "description": "Zapatillas de estilo retro con un diseño inspirado en los años 70.",
+    "code": "NB7707",
+    "price": 110,
     "status": true,
-    "stock": 50,
-    "category": "Accessories",
-    "thumbnails": ["images/keyboard1.jpg", "images/keyboard2.jpg"]
+    "stock": 35,
+    "category": "Footwear",
+    "thumbnails": [
+      "images/nike_blazer_mid_77_1.jpg"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Nike Dunk Low",
+    "description": "Zapatillas con una rica historia en el mundo del baloncesto y el streetwear.",
+    "code": "NDL303",
+    "price": 100,
+    "status": true,
+    "stock": 40,
+    "category": "Footwear",
+    "thumbnails": [
+      "images/nike_dunk_low_1.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Nike Pegasus Trail 3",
+    "description": "Zapatillas de trail running diseñadas para proporcionar estabilidad y tracción en terrenos irregulares.",
+    "code": "NPT303",
+    "price": 130,
+    "status": true,
+    "stock": 20,
+    "category": "Footwear",
+    "thumbnails": [
+      "images/nike_pegasus_trail_3_1.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Nike SB Dunk",
+    "description": "Zapatillas de skateboarding con un diseño robusto y amortiguación adicional.",
+    "code": "NSD404",
+    "price": 110,
+    "status": true,
+    "stock": 18,
+    "category": "Footwear",
+    "thumbnails": [
+      "images/nike_sb_dunk_1.jpg"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Nike Jordan 2024",
+    "description": "Calzado de uso deportivo.",
+    "code": "456555",
+    "price": 189000,
+    "status": true,
+    "stock": 99,
+    "category": "Basquet",
+    "thumbnails": [
+      "www.nba.com.ar"
+    ]
   }
 ]

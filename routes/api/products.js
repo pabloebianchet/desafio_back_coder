@@ -60,6 +60,13 @@ router.post("/", (req, res) => {
     const productsData = fs.readFileSync(productsFilePath, "utf-8");
     const products = JSON.parse(productsData);
 
+    // Verificar si ya existe un producto con el mismo código
+    if (products.some((product) => product.code === code)) {
+      return res
+        .status(400)
+        .json({ message: "Producto con el mismo código ya existe" });
+    }
+
     const newProduct = {
       id: (products.length + 1).toString(),
       title,
@@ -102,14 +109,21 @@ router.put("/:pid", (req, res) => {
     if (productIndex !== -1) {
       const updatedProduct = {
         ...products[productIndex],
-        title,
-        description,
-        code,
-        price,
-        status,
-        stock,
-        category,
-        thumbnails,
+        title: title !== undefined ? title : products[productIndex].title,
+        description:
+          description !== undefined
+            ? description
+            : products[productIndex].description,
+        code: code !== undefined ? code : products[productIndex].code,
+        price: price !== undefined ? price : products[productIndex].price,
+        status: status !== undefined ? status : products[productIndex].status,
+        stock: stock !== undefined ? stock : products[productIndex].stock,
+        category:
+          category !== undefined ? category : products[productIndex].category,
+        thumbnails:
+          thumbnails !== undefined
+            ? thumbnails
+            : products[productIndex].thumbnails,
       };
 
       products[productIndex] = updatedProduct;
@@ -134,8 +148,7 @@ router.delete("/:pid", (req, res) => {
     if (productIndex !== -1) {
       products = products.filter((p) => p.id !== req.params.pid);
       fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-
-      res.json({ message: "Producto eliminado" });
+      res.json({ message: "Producto eliminado exitosamente" });
     } else {
       res.status(404).json({ message: "Producto no encontrado" });
     }
