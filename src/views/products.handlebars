@@ -1,0 +1,65 @@
+<h1> Productos </h1>
+{{#each productos}}
+<div class="product">
+  <h2>{{title}}</h2>
+  <p>{{description}}</p>
+  <p>Price: ${{price}}</p>
+  <p>Category: {{category}} </p>
+  <button class="add-to-cart" data-id="{{_id}}"> Agregar al Carrito </button>
+</div>
+{{/each}}
+
+<div class="pagination">
+  {{#if hasPrevPage}}
+  <a href="/products?page={{prevPage}}"> Anterior </a>
+  {{/if}}
+
+  <p>Pagina {{currentPage}} de {{totalPages}} </p>
+
+  {{#if hasNextPage}}
+  <a href="/products?page={{nextPage}}"> Siguiente </a>
+  {{/if}}
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log(111111111111111) 
+    let cartId = localStorage.getItem("cartId");
+
+    const addToCartButtons = document.querySelectorAll(".add-to-cart"); 
+    addToCartButtons.forEach((button) => {
+      button.addEventListener("click", async (event) => {
+        const productId = event.target.getAttribute("data-id");
+        console.log(event.target, productId)
+        try {
+          if (!cartId) {
+            const newCartResponse =
+              await fetch("/api/carts", {
+                method: "POST", headers: {
+                  "Content-Type":
+                    "application/json",
+                },
+              });
+            const newCart = await newCartResponse.json();
+            cartId = newCart._id;
+            localStorage.setItem("cartId", cartId);
+          }
+          const addToCartResponse = await fetch(`/api/carts/${cartId}/product/${productId}`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json", },
+              body: JSON.stringify({ quantity: 1 }),
+            });
+          const result = await addToCartResponse.json();
+          if (addToCartResponse.ok) {
+            alert("Producto agregado al carrito");
+          }
+          else {
+            alert("Error al agregar producto al carrito");
+          }
+        } catch (error) {
+          console.error("Error:", error); alert("Hubo un error al procesar la solicitud");
+        }
+      });
+    });
+  });
+</script>

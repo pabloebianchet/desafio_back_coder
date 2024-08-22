@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Nike Air max 90",
+    "description": "Calzado Urbano",
+    "price": "289000",
+    "img": "https://i.pinimg.com/564x/28/27/c5/2827c5b0fa9b7e1262d3435340fa43ea.jpg",
+    "code": "#23484",
+    "stock": "247",
+    "category": "Urban",
+    "status": true,
+    "thumbnails": [],
+    "id": 1
+  },
+  {
+    "title": "Nike Air max 96",
+    "description": "Calzado Urbano",
+    "price": "320000",
+    "img": "https://i.pinimg.com/564x/28/27/c5/2827c5b0fa9b7e1262d3435340fa43ea.jpg",
+    "code": "#130597",
+    "stock": "244",
+    "category": "Urban",
+    "status": true,
+    "thumbnails": [],
+    "id": 2
+  }
+]
