@@ -18,20 +18,43 @@
       border-color: #4CAF50; } form button { background-color: #4CAF50; color:
       white; border: none; cursor: pointer; transition: background-color 0.3s; }
       form button:hover { background-color: #45a049; } form button:active {
-      background-color: #3e8e41; }
+      background-color: #3e8e41; } .navbar { position: fixed; top: 0; width:
+      100%; background-color: #333; display: flex; justify-content: center;
+      padding: 10px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;
+      } .nav-button { background-color: #f4f4f4; color: #333; border: none;
+      padding: 10px 20px; margin: 0 10px; border-radius: 4px; cursor: pointer;
+      transition: background-color 0.3s ease-in-out; } .nav-button:hover {
+      background-color: #ddd; } h1 { text-align: center; color: #333;
+      margin-bottom: 40px; }
     </style>
   </head>
   <body>
+    <nav class="navbar">
+      <button
+        class="nav-button"
+        onclick="window.location.href='/'"
+      >Home</button>
+
+      <button
+        class="nav-button"
+        onclick="window.location.href='/products'"
+      >Products</button>
+      <button
+        id="cartButton"
+        class="nav-button"
+        onclick="navigateToCart()"
+      >Carrito</button>
+    </nav>
     <div>
-        <img src="" alt="">
+      <img src="" alt="" />
     </div>
 
-    <h1>Real Time Products</h1>
+    <h1 style="margin-top: 5rem;">Real Time Products</h1>
 
     <div id="contenedorProductos"></div>
 
-    <div style="display: flex; align-items:center; justify-content:center"><h2>Formulario para agregar
-        Productos</h2></div>
+    <div style="display: flex; align-items:center; justify-content:center"><h2
+      >Formulario para agregar Productos</h2></div>
 
     <form>
       <input type="text" id="title" placeholder="Título" />
@@ -50,6 +73,16 @@
 
     <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+    function navigateToCart() {
+      const cartId = localStorage.getItem('cartId'); // Recupera el cartId de localStorage
+      if (cartId) {
+        window.location.href = `/carts/${cartId}`; // Redirige a la URL del carrito
+      } else {
+        alert('No hay ningún carrito disponible.'); // Mensaje si no hay cartId
+      }
+    }
+  </script>
 
   </body>
 </html>

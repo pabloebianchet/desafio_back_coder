@@ -90,6 +90,8 @@ router.get("/carts/:cid", async (req, res) => {
   }
 });
 
+
+
 // Ruta para la vista principal que muestra todos los productos
 router.get("/", async (req, res) => {
   try {

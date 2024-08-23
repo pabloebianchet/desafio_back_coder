@@ -6,7 +6,7 @@ import ProductManager from "../dao/db/product-manager-db.js";
 const cartManager = new CartManager();
 const productManager = new ProductManager();
 
-// 1) Crear un nuevo carrito
+//Crear un nuevo carrito//
 router.post("/", async (req, res) => {
   try {
     const nuevoCarrito = await cartManager.crearCarrito();
@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// 2) Listar los productos que pertenecen a un carrito
+//Listar los productos que pertenecen a un carrito//
 router.get("/:cid", async (req, res) => {
   const cartId = req.params.cid;
   try {
@@ -33,7 +33,7 @@ router.get("/:cid", async (req, res) => {
   }
 });
 
-// 3) Agregar productos a un carrito
+//Agregar productos a un carrito//
 router.post("/:cid/product/:pid", async (req, res) => {
   const cartId = req.params.cid;
   const productId = req.params.pid;
@@ -52,11 +52,11 @@ router.post("/:cid/product/:pid", async (req, res) => {
   }
 });
 
-// 4) Eliminar un producto de un carrito
+//Eliminar un producto de un carrito
 router.delete("/:cid/product/:pid/:quantity", async (req, res) => {
   const { cid, pid, quantity } = req.params;
   try {
-    // Verifica si el producto existe
+    //Verifica si el producto existe//
     const product = await productManager.getProductById(pid);
     if (!product) {
       return res.status(404).json({
@@ -65,7 +65,7 @@ router.delete("/:cid/product/:pid/:quantity", async (req, res) => {
       });
     }
 
-    // Verifica si el carrito existe
+    //Verifica si el carrito existe//
     const cart = await cartManager.getCarritoById(cid);
     if (!cart) {
       return res.status(404).json({
@@ -74,7 +74,7 @@ router.delete("/:cid/product/:pid/:quantity", async (req, res) => {
       });
     }
 
-    // Llama al método para eliminar el producto del carrito
+    //Llama al método para eliminar el producto del carrito//
     const cartUpdate = await cartManager.deleteProductToCart(
       cid,
       pid,
@@ -90,7 +90,7 @@ router.delete("/:cid/product/:pid/:quantity", async (req, res) => {
   }
 });
 
-// 5) Actualizar la cantidad de un producto en un carrito
+//Actualizar la cantidad de un producto en un carrito//
 router.put("/:cid/product/:pid", async (req, res) => {
   const { cid, pid } = req.params;
   const { quantity } = req.body;
@@ -133,7 +133,7 @@ router.put("/:cid/product/:pid", async (req, res) => {
   }
 });
 
-// 6) Eliminar todos los productos de un carrito
+//Eliminar todos los productos de un carrito//
 router.delete("/:cid", async (req, res) => {
   const { cid } = req.params;
   try {
@@ -153,19 +153,25 @@ router.delete("/:cid", async (req, res) => {
   }
 });
 
-// 7) Eliminar un carrito por su id
+//Eliminar un carrito por su id//
 router.delete("/:cid", async (req, res) => {
   const { cid } = req.params;
   try {
     const carritoEliminado = await cartManager.deleteCarritoById(cid);
     if (!carritoEliminado) {
-      return res.status(404).json({ status: "Error", msg: "Carrito no encontrado" });
+      return res
+        .status(404)
+        .json({ status: "Error", msg: "Carrito no encontrado" });
     }
 
-    res.status(200).json({ status: "success", msg: "Carrito eliminado con éxito" });
+    res
+      .status(200)
+      .json({ status: "success", msg: "Carrito eliminado con éxito" });
   } catch (error) {
     console.error("Error al eliminar el carrito", error);
-    res.status(500).json({ status: "Error", msg: "Error interno del servidor" });
+    res
+      .status(500)
+      .json({ status: "Error", msg: "Error interno del servidor" });
   }
 });
 

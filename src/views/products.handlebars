@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Productos</title>
+
+  <title>Productos actuales en la tienda: </title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -90,10 +86,49 @@
       margin: 0 10px;
       color: #555;
     }
+body { font-family: Arial, sans-serif; margin: 0; padding: 20px;
+  background-color: #f4f4f4; padding-top: 80px; /* Espacio para la navbar */ }
+  .navbar { position: fixed; top: 0; width: 100%; background-color: #333;
+  display: flex; justify-content: center; padding: 10px 0; box-shadow: 0 4px 6px
+  rgba(0, 0, 0, 0.1); z-index: 1000; } .nav-button { background-color: #f4f4f4;
+  color: #333; border: none; padding: 10px 20px; margin: 0 10px; border-radius:
+  4px; cursor: pointer; transition: background-color 0.3s ease-in-out; }
+  .nav-button:hover { background-color: #ddd; } h1 { text-align: center; color:
+  #333; margin-bottom: 40px; } .contenedorProductos { display: flex; flex-wrap:
+  wrap; justify-content: center; gap: 20px; } .producto { background-color:
+  #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.2s
+  ease-in-out, box-shadow 0.2s ease-in-out; } .producto:hover { transform:
+  translateY(-8px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); }
+  .producto-titulo { font-size: 18px; font-weight: bold; color: #333;
+  margin-bottom: 10px; } .producto-descripcion { font-size: 14px; color: #666;
+  margin-bottom: 15px; } .producto-precio { font-size: 16px; color: #e74c3c;
+  font-weight: bold; margin-bottom: 15px; } @media (max-width: 600px) {
+  .contenedorProductos { flex-direction: column; align-items: center; }
+  .producto { width: 100%; max-width: 300px; } 
+
+
+
   </style>
 </head>
 <body>
-  <h1>Productos</h1>
+  <nav class="navbar">
+    <button
+      class="nav-button"
+      onclick="window.location.href='/'"
+    >Home</button>
+    <button
+      class="nav-button"
+      onclick="window.location.href='/realtimeproducts'"
+    >RealTimeProducts</button>
+    <button
+      id="cartButton"
+      class="nav-button"
+      onclick="navigateToCart()"
+    >Carrito</button>
+    
+  </nav>
+  <h1>Productos actuales en la tienda: </h1>
   <div class="product-container">
     {{#each productos}}
     <div class="product">
@@ -159,5 +194,17 @@
       });
     });
   </script>
+
+  <script>
+    function navigateToCart() {
+      const cartId = localStorage.getItem('cartId'); // Recupera el cartId de localStorage
+      if (cartId) {
+        window.location.href = `/carts/${cartId}`; // Redirige a la URL del carrito
+      } else {
+        alert('No hay ningún carrito disponible.'); // Mensaje si no hay cartId
+      }
+    }
+  </script>
+  
 </body>
 </html>
