@@ -153,4 +153,20 @@ router.delete("/:cid", async (req, res) => {
   }
 });
 
+// 7) Eliminar un carrito por su id
+router.delete("/:cid", async (req, res) => {
+  const { cid } = req.params;
+  try {
+    const carritoEliminado = await cartManager.deleteCarritoById(cid);
+    if (!carritoEliminado) {
+      return res.status(404).json({ status: "Error", msg: "Carrito no encontrado" });
+    }
+
+    res.status(200).json({ status: "success", msg: "Carrito eliminado con éxito" });
+  } catch (error) {
+    console.error("Error al eliminar el carrito", error);
+    res.status(500).json({ status: "Error", msg: "Error interno del servidor" });
+  }
+});
+
 export default router;

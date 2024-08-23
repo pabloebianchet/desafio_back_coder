@@ -1,65 +1,163 @@
-<h1> Productos </h1>
-{{#each productos}}
-<div class="product">
-  <h2>{{title}}</h2>
-  <p>{{description}}</p>
-  <p>Price: ${{price}}</p>
-  <p>Category: {{category}} </p>
-  <button class="add-to-cart" data-id="{{_id}}"> Agregar al Carrito </button>
-</div>
-{{/each}}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
 
-<div class="pagination">
-  {{#if hasPrevPage}}
-  <a href="/products?page={{prevPage}}"> Anterior </a>
-  {{/if}}
+    h1 {
+      text-align: center;
+      color: #333;
+      margin: 20px 0;
+    }
 
-  <p>Pagina {{currentPage}} de {{totalPages}} </p>
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 10px;
+    }
 
-  {{#if hasNextPage}}
-  <a href="/products?page={{nextPage}}"> Siguiente </a>
-  {{/if}}
-</div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    console.log(111111111111111) 
-    let cartId = localStorage.getItem("cartId");
+    .product {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      max-width: 300px;
+      text-align: center;
+    }
 
-    const addToCartButtons = document.querySelectorAll(".add-to-cart"); 
-    addToCartButtons.forEach((button) => {
-      button.addEventListener("click", async (event) => {
-        const productId = event.target.getAttribute("data-id");
-        console.log(event.target, productId)
-        try {
-          if (!cartId) {
-            const newCartResponse =
-              await fetch("/api/carts", {
-                method: "POST", headers: {
-                  "Content-Type":
-                    "application/json",
+    .product h2 {
+      font-size: 1.5em;
+      margin: 0 0 10px;
+      color: #555;
+    }
+
+    .product p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .product p:last-of-type {
+      margin-bottom: 20px;
+    }
+
+    .add-to-cart {
+      background-color: #28a745;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-to-cart:hover {
+      background-color: #218838;
+    }
+
+    .pagination {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .pagination a {
+      color: #007bff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      margin: 0 5px;
+    }
+
+    .pagination a:hover {
+      background-color: #e9ecef;
+    }
+
+    .pagination p {
+      display: inline-block;
+      margin: 0 10px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Productos</h1>
+  <div class="product-container">
+    {{#each productos}}
+    <div class="product">
+      <h2>{{title}}</h2>
+      <p>{{description}}</p>
+      <p>Price: ${{price}}</p>
+      <p>Category: {{category}} </p>
+      <button class="add-to-cart" data-id="{{_id}}">Agregar al Carrito</button>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="pagination">
+    {{#if hasPrevPage}}
+    <a href="/products?page={{prevPage}}">Anterior</a>
+    {{/if}}
+
+    <p>Página {{currentPage}} de {{totalPages}}</p>
+
+    {{#if hasNextPage}}
+    <a href="/products?page={{nextPage}}">Siguiente</a>
+    {{/if}}
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let cartId = localStorage.getItem("cartId");
+      console.log("Verificando: ", cartId)
+
+      const addToCartButtons = document.querySelectorAll(".add-to-cart"); 
+      addToCartButtons.forEach((button) => {
+        button.addEventListener("click", async (event) => {
+          const productId = event.target.getAttribute("data-id");
+          console.log(event.target, productId)
+          try {
+            if (!cartId) {
+              const newCartResponse = await fetch("/api/carts", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
                 },
               });
-            const newCart = await newCartResponse.json();
-            cartId = newCart._id;
-            localStorage.setItem("cartId", cartId);
-          }
-          const addToCartResponse = await fetch(`/api/carts/${cartId}/product/${productId}`,
-            {
+              const newCart = await newCartResponse.json();
+              cartId = newCart._id;
+              localStorage.setItem("cartId", cartId);
+            }
+            const addToCartResponse = await fetch(`/api/carts/${cartId}/product/${productId}`, {
               method: "POST",
-              headers: { "Content-Type": "application/json", },
+              headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ quantity: 1 }),
             });
-          const result = await addToCartResponse.json();
-          if (addToCartResponse.ok) {
-            alert("Producto agregado al carrito");
+            const result = await addToCartResponse.json();
+            if (addToCartResponse.ok) {
+              alert("Producto agregado al carrito");
+            } else {
+              alert("Error al agregar producto al carrito");
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Hubo un error al procesar la solicitud");
           }
-          else {
-            alert("Error al agregar producto al carrito");
-          }
-        } catch (error) {
-          console.error("Error:", error); alert("Hubo un error al procesar la solicitud");
-        }
+        });
       });
     });
-  });
-</script>
+  </script>
+</body>
+</html>
